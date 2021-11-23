@@ -15,6 +15,8 @@ public class BusTerminal {
         this.platform = platform;
     }
 
+
+
     public List<Travel> getAllTrips() {
         return allTrips;
     }

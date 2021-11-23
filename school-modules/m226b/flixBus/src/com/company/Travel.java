@@ -26,6 +26,10 @@ public class Travel {
     public Travel() {
     }
 
+    public Bus createBus() {
+        return new Bus("fuel", 10, 1, BusType.SINGLE, true);
+    }
+
     public void createTrip() {
         System.out.println("Create a new trip...");
         System.out.print("Destination\n➔ ");
