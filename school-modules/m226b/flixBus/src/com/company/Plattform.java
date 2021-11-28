@@ -13,8 +13,6 @@ public class Plattform {
         this.currentBus = currentBus;
     }
 
-
-
     public int getPlatformID() {
         return platformID;
     }

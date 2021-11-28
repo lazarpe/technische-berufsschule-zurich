@@ -13,12 +13,11 @@ public class Travel {
     private LocalTime arival_time;
     private boolean international;
     private Bus transportBus;
-    Scanner scanner = new Scanner(System.in);  // Create a Scanner object
 
-    public Travel(String destination, LocalTime departure_time, LocalTime arival_time, boolean international, Bus transportBus) {
+    public Travel(String destination, LocalTime departure_time, LocalTime arrival_time, boolean international, Bus transportBus) {
         this.destination = destination;
         this.departure_time = departure_time;
-        this.arival_time = arival_time;
+        this.arival_time = arrival_time;
         this.international = international;
         this.transportBus = transportBus;
     }
@@ -26,24 +25,12 @@ public class Travel {
     public Travel() {
     }
 
-    public Bus createBus() {
-        return new Bus("fuel", 10, 1, BusType.SINGLE, true);
-    }
-
-    public void createTrip() {
-        System.out.println("Create a new trip...");
-        System.out.print("Destination\n➔ ");
-        setDestination(scanner.nextLine());
-        System.out.print("Departure time\n➔ ");
-        setDeparture_time(LocalTime.parse(scanner.nextLine()));
-        // validate time:
-        // if (getDeparture_time().toString().equals("23:44:22")) { }
-        System.out.print("Arrival time\n➔ ");
-        setArival_time(LocalTime.parse(scanner.nextLine()));
-        System.out.print("Leaving switzerland (y/n)\n➔ ");
-        setInternational(scanner.nextLine().equals("y"));
-        System.out.print("Select a bus\n➔ ");
-        //print list of available buses for that time
+    /**
+     * This method is just temporarily. It's possible to add user input here (scalable)
+     * @return Hardcoded bus
+     */
+    public Bus createBus(int busID) {
+        return new Bus("fuel", 10, busID, BusType.SINGLE, true);
     }
 
     public String getDestination() {
@@ -86,5 +73,3 @@ public class Travel {
         this.transportBus = transportBus;
     }
 }
-
-

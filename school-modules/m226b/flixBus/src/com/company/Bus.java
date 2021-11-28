@@ -16,9 +16,6 @@ public class Bus extends Vehicle {
         this.firstClass = firstClass;
     }
 
-
-
-
     public int getBusID() {
         return busID;
     }
