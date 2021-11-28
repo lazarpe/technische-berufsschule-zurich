@@ -8,7 +8,8 @@ public class Bus extends Vehicle {
     private BusType busType;
     private boolean comfortClass; // true = 1st class, false = 2nd class
 
-    public Bus(BusType busType, boolean comfortClass) {
+    public Bus(int passengerCapacity, BusType busType, boolean comfortClass) {
+        super(passengerCapacity);
         this.busType = busType;
         this.comfortClass = comfortClass;
     }
