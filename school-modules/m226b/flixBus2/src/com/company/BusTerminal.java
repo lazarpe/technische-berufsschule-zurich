@@ -7,12 +7,19 @@ import java.util.ArrayList;
  * Project name: flixBus2
  **/
 public class BusTerminal {
-    private ArrayList<Platform> platformList;
+    private ArrayList<Platform> platformList = new ArrayList<>();
     private String terminalName;
 
-    public BusTerminal(ArrayList<Platform> platformList, String terminalName) {
-        this.platformList = platformList;
+    public BusTerminal(String terminalName) {
         this.terminalName = terminalName;
+
+        addPlatformToArrayList(new Platform(1, 30, Service.INTERNATIONAL));
+        addPlatformToArrayList(new Platform(2, 45, Service.INTERNATIONAL));
+        addPlatformToArrayList(new Platform(3, 15, Service.NATIONAL));
+    }
+
+    public void addPlatformToArrayList(Platform platform) {
+        platformList.add(platform);
     }
 
     public ArrayList<Platform> getPlatformList() {

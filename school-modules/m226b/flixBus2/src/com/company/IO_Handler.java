@@ -10,8 +10,8 @@ import java.util.Scanner;
 public class IO_Handler {
     private final Scanner sc = new Scanner(System.in);
     private boolean validInput = true;
-    private boolean stopProgram = false;
     TripManager tripManager = new TripManager();
+    BusTerminal busTerminal = new BusTerminal("Zurich FlixBus Main Station");
 
     public void askUserToSelectAction() {
         do {
@@ -45,13 +45,14 @@ public class IO_Handler {
                         System.out.print("");
                         switch (service) {
                             case "international":
+                                //tripManager.findMatchingBusForTrip(tripManager.getBusArrayList(), tripManager.generateTrip(destination, LocalDate.parse(departure), LocalDate.parse(arrival), Service.INTERNATIONAL));
                                 tripManager.addTripToList(tripManager.generateTrip(destination, LocalDate.parse(departure), LocalDate.parse(arrival), Service.INTERNATIONAL));
                                 break;
                             case "national":
                                 tripManager.addTripToList(tripManager.generateTrip(destination, LocalDate.parse(departure), LocalDate.parse(arrival), Service.NATIONAL));
                                 break;
                             default:
-                                System.out.println("Something went wrong try again.");
+                                System.out.println("Something went wrong with the national/international service selection, try again.");
                                 break;
                         }
 
@@ -59,12 +60,19 @@ public class IO_Handler {
                         System.out.println("Successfully added your trip:\n- Destination: " + destination + "\n- Departure: " + departure + "\n- Arrival: " + arrival + "\n- Service: " + service);
                         break;
                     case "c":
+                        if (tripManager.getTripArrayList().size() == 0) {
+                            System.out.println("No trips planned yet");
+                        }
                         for (Trip trip : tripManager.getTripArrayList()) {
-                            System.out.println("Destination: " + trip.getDestination());
+                            System.out.println("\nDestination: " + trip.getDestination());
                             System.out.println("Departure: " + trip.getDeparture());
                             System.out.println("Arrival: " + trip.getArrival());
                             System.out.println("Service: " + trip.getTripService());
                             System.out.println("---");
+                            Bus bus = tripManager.findMatchingBusForTrip(tripManager.getBusArrayList(), trip);
+                            System.out.println("- Bustype: " + bus.getBusType() + "\n- Capacity: " + bus.getPassengerCapacity());
+                            Platform platform = tripManager.findMatchingPlatform(busTerminal.getPlatformList(), bus, 0);
+                            System.out.println("- Platform ID: " + platform.getPlatformId());
                         }
                         validInput = true;
                         break;
