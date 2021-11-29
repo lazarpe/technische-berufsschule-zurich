@@ -16,12 +16,16 @@ public class IO_Handler {
     public void askUserToSelectAction() {
         do {
             try {
-                System.out.println("Select an action: ");
+                System.out.println("\nSelect an action: ");
                 printActionList();
                 String selectedAction = sc.nextLine().toLowerCase();
                 switch (selectedAction) {
                     case "a":
-                        //TODO: check time when bus leaves platform
+                        System.out.println("What is the departure date you are looking for? (format: YEAR-MONTH-DAY");
+                        System.out.print("➔ ");
+                        String specificDestination = sc.nextLine();
+                        System.out.print("");
+                        tripManager.findBusOnSpecificDepartureDate(LocalDate.parse(specificDestination));
                         validInput = true;
                         break;
                     case "b":
