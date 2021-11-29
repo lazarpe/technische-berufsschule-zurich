@@ -78,6 +78,8 @@ public class TripManager {
                 return platform;
             }
         }
+        // in case that there is no available platform, the busterminal got a special platform
+        // only for emergencies or when no more are left. 
         platformID++;
         return new Platform(platformID, 100, Service.INTERNATIONAL);
     }
