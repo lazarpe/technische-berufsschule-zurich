@@ -1,5 +1,6 @@
 package com.company;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 /**
@@ -8,7 +9,9 @@ import java.util.Scanner;
  **/
 public class IO_Handler {
     private final Scanner sc = new Scanner(System.in);
-    private boolean validInput = false;
+    private boolean validInput = true;
+    private boolean stopProgram = false;
+    TripManager tripManager = new TripManager();
 
     public void askUserToSelectAction() {
         do {
@@ -16,24 +19,65 @@ public class IO_Handler {
                 System.out.println("Select an action: ");
                 printActionList();
                 String selectedAction = sc.nextLine().toLowerCase();
+                switch (selectedAction) {
+                    case "a":
+                        //TODO: check time when bus leaves platform
+                        validInput = true;
+                        break;
+                    case "b":
+                        //TODO: Generate a new trip and validate that no other bus uses the same platform on this time
+                        System.out.println("What's the destination of your trip?");
+                        System.out.print("➔ ");
+                        String destination = sc.nextLine();
+                        System.out.println("When is the departure date? (format: YEAR-MONTH-DAY");
+                        System.out.print("➔ ");
+                        String departure = sc.nextLine();
+                        System.out.println("When is the arrival date?");
+                        System.out.print("➔ ");
+                        String arrival = sc.nextLine();
+                        System.out.println("What service is it? (international / national)");
+                        System.out.print("➔ ");
+                        String service = sc.nextLine();
+                        System.out.print("");
+                        switch (service) {
+                            case "international":
+                                tripManager.addTripToList(tripManager.generateTrip(destination, LocalDate.parse(departure), LocalDate.parse(arrival), Service.INTERNATIONAL));
+                                break;
+                            case "national":
+                                tripManager.addTripToList(tripManager.generateTrip(destination, LocalDate.parse(departure), LocalDate.parse(arrival), Service.NATIONAL));
+                                break;
+                            default:
+                                System.out.println("Something went wrong try again.");
+                                break;
+                        }
 
-                if (selectedAction.equals("a")) {
-                    //TODO: check time when bus leaves platform
-                    validInput = true;
-                } else if (selectedAction.equals("b")) {
-                    //TODO: Generate a new trip and validate that no other bus uses the same platform on this time
-                    validInput = true;
+                        validInput = true;
+                        System.out.println("Successfully added your trip:\n- Destination: " + destination + "\n- Departure: " + departure + "\n- Arrival: " + arrival + "\n- Service: " + service);
+                        break;
+                    case "c":
+                        for (Trip trip : tripManager.getTripArrayList()) {
+                            System.out.println("Destination: " + trip.getDestination());
+                            System.out.println("Departure: " + trip.getDeparture());
+                            System.out.println("Arrival: " + trip.getArrival());
+                            System.out.println("Service: " + trip.getTripService());
+                            System.out.println("---");
+                        }
+                        validInput = true;
+                        break;
+                    case "d":
+                        System.exit(0);
                 }
             } catch (Exception e) {
                 System.out.println("Something went wrong.");
             }
-        } while (!validInput);
+        } while (validInput);
     }
 
     public void printActionList() {
         System.out.println("a) Check time when bus leaves platform");
         System.out.println("b) Generate a new trip");
         System.out.println("c) Show all trips");
+        System.out.println("d) Quit");
         System.out.print("➔ ");
     }
 }
