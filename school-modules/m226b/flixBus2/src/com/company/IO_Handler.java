@@ -20,6 +20,9 @@ public class IO_Handler {
                 if (selectedAction.equals("a")) {
                     //TODO: check time when bus leaves platform
                     validInput = true;
+                } else if (selectedAction.equals("b")) {
+                    //TODO: Generate a new trip and validate that no other bus uses the same platform on this time
+                    validInput = true;
                 }
             } catch (Exception e) {
                 System.out.println("Something went wrong.");
