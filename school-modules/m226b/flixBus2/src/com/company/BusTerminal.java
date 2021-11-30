@@ -19,7 +19,7 @@ public class BusTerminal {
     }
 
     public void addPlatformToArrayList(Platform platform) {
-        this.platformList.add(platform);
+        platformList.add(platform);
     }
 
     public ArrayList<Platform> getPlatformList() {

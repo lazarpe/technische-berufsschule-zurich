@@ -21,6 +21,7 @@ public class IO_Handler {
                 String selectedAction = sc.nextLine().toLowerCase();
                 switch (selectedAction) {
                     case "a":
+                        // Check date when bus leaves
                         System.out.println("What is the departure date you are looking for? (format: YEAR-MONTH-DAY");
                         System.out.print("➔ ");
                         String specificDestination = sc.nextLine();
@@ -29,7 +30,7 @@ public class IO_Handler {
                         validInput = true;
                         break;
                     case "b":
-                        //TODO: Generate a new trip and validate that no other bus uses the same platform on this time
+                        // Generate a new trip
                         System.out.println("What's the destination of your trip?");
                         System.out.print("➔ ");
                         String destination = sc.nextLine();
@@ -60,6 +61,7 @@ public class IO_Handler {
                         System.out.println("Successfully added your trip:\n- Destination: " + destination + "\n- Departure: " + departure + "\n- Arrival: " + arrival + "\n- Service: " + service);
                         break;
                     case "c":
+                        // Show all trips
                         if (tripManager.getTripArrayList().size() == 0) {
                             System.out.println("No trips planned yet");
                         }
@@ -71,12 +73,13 @@ public class IO_Handler {
                             System.out.println("---");
                             Bus bus = tripManager.findMatchingBusForTrip(tripManager.getBusArrayList(), trip);
                             System.out.println("- Bustype: " + bus.getBusType() + "\n- Capacity: " + bus.getPassengerCapacity());
-                            Platform platform = tripManager.findMatchingPlatform(busTerminal.getPlatformList(), bus, 0);
+                            Platform platform = tripManager.findMatchingPlatform(busTerminal.getPlatformList(), bus, (int) (Math.random()*(100-1+1)+1));
                             System.out.println("- Platform ID: " + platform.getPlatformId());
                         }
                         validInput = true;
                         break;
                     case "d":
+                        // Quit application
                         System.exit(0);
                 }
             } catch (Exception e) {
@@ -86,7 +89,7 @@ public class IO_Handler {
     }
 
     public void printActionList() {
-        System.out.println("a) Check time when bus leaves platform");
+        System.out.println("a) Check date when bus leaves");
         System.out.println("b) Generate a new trip");
         System.out.println("c) Show all trips");
         System.out.println("d) Quit");

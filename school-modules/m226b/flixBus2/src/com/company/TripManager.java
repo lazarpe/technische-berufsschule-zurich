@@ -14,6 +14,7 @@ public class TripManager {
     public TripManager() {
         addBusToList(generateBus(30, BusType.DOUBLE, false));
         addBusToList(generateBus(45, BusType.DOUBLE, true));
+        addBusToList(generateBus(100, BusType.SINGLE, false));
         addBusToList(generateBus(15, BusType.SINGLE, false));
 
         addTripToList(generateTrip("Madrid", LocalDate.of(2022, 1, 10), LocalDate.of(2022, 1, 11), Service.INTERNATIONAL));
@@ -79,8 +80,7 @@ public class TripManager {
             }
         }
         // in case that there is no available platform, the busterminal got a special platform
-        // only for emergencies or when no more are left. 
-        platformID++;
+        // only for emergencies or when no more are left.
         return new Platform(platformID, 100, Service.INTERNATIONAL);
     }
 
