@@ -5,6 +5,6 @@ package com.company;
  * Project name: Stock
  **/
 public interface StockExchange {
-    public void buyStock(Stock stock);
+    public Stock buyStock(Stock stock);
     public void sellStock(Stock stock);
 }

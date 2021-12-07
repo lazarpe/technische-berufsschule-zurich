@@ -7,8 +7,9 @@ package com.company;
 public class NYStockExchange implements StockExchange {
 
     @Override
-    public void buyStock(Stock stock) {
+    public Stock buyStock(Stock stock) {
         System.out.println("Bought " + stock.getStockName() + " for " + stock.getStockPrice() + "$ from NYStock Exchange");
+        return stock;
     }
 
     @Override

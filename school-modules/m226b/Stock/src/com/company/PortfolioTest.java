@@ -1,8 +1,13 @@
 package com.company;
 
+import org.junit.Assert;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 
-import static org.junit.jupiter.api.Assertions.*;
+import javax.sound.sampled.Port;
+import java.util.ArrayList;
 
 /**
  * Created by lazar on 11/30/2021.
@@ -10,18 +15,22 @@ import static org.junit.jupiter.api.Assertions.*;
  **/
 class PortfolioTest {
 
+    Portfolio portfolio;
+
     @BeforeEach
     void setUp() {
-        StockExchange stockExchange = new StockExchange() {
-            @Override
-            public void buyStock(Stock stock) {
+        portfolio = new Portfolio(new TokyoStockExchange(), false);
 
-            }
+        portfolio.listOfStocks.add(portfolio.stockExchange.buyStock(new Stock("Microsoft", (float) 100.0)));
+        portfolio.listOfStocks.add(portfolio.stockExchange.buyStock(new Stock("Microsoft", (float) 100.0)));
+        portfolio.listOfStocks.add(portfolio.stockExchange.buyStock(new Stock("Microsoft", (float) 100.0)));
+        portfolio.listOfStocks.add(portfolio.stockExchange.buyStock(new Stock("Microsoft", (float) 100.0)));
+        portfolio.listOfStocks.add(portfolio.stockExchange.buyStock(new Stock("Microsoft", (float) 100.0)));
+    }
 
-            @Override
-            public void sellStock(Stock stock) {
-
-            }
-        };
+    @Test
+    @DisplayName("Test total price of purchased stocks")
+    void testPriceOfPurchasedStocks() {
+        Assertions.assertEquals(500, portfolio.getPriceOfPurchasedStocks(), "Total should be 500 --> True");
     }
 }
