@@ -11,14 +11,26 @@ public class Weather {
     private String currentWeather;
     private List<Person> people = new ArrayList<>();
 
+    /**
+     * Add a person to list
+     * @param person
+     */
     public void subscribe(Person person) {
         this.people.add(person);
     }
 
+    /**
+     * Remove a person from list
+     * @param person
+     */
     public void unsubscribe(Person person) {
         this.people.remove(person);
     }
 
+    /**
+     * Set current weather for all people from list
+     * @param weather
+     */
     public void setWeather(String weather) {
         this.currentWeather = weather;
 
