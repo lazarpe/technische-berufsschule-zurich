@@ -16,7 +16,7 @@ public class Weather {
      * @param person
      */
     public void subscribe(Person person) {
-        this.people.add(person);
+        people.add(person);
     }
 
     /**
@@ -24,7 +24,7 @@ public class Weather {
      * @param person
      */
     public void unsubscribe(Person person) {
-        this.people.remove(person);
+        people.remove(person);
     }
 
     /**
@@ -32,10 +32,10 @@ public class Weather {
      * @param weather
      */
     public void setWeather(String weather) {
-        this.currentWeather = weather;
+        currentWeather = weather;
 
-        for (Person person : this.people) {
-            person.update(this.currentWeather);
+        for (Person person : people) {
+            person.update(currentWeather);
         }
     }
 }

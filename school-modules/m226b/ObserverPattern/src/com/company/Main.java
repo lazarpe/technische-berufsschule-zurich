@@ -10,9 +10,9 @@ public class Main {
         weather.subscribe(person1);
         weather.subscribe(person2);
         
-        weather.setWeather("sunny weather");
+        weather.setWeather("sunny weather");        weather.setWeather("windy weather");
+
 
         weather.unsubscribe(person2);
-        weather.setWeather("windy weather");
     }
 }
