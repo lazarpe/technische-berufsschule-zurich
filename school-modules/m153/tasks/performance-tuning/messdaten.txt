@@ -1,1 +1,2 @@
-resultate der query: 0.000 sec
+resultat der query ohne index: 11.243 sec
+resultat der query mit index: 0.000 sec
