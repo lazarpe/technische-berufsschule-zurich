@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A10</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <p>Zahl1: <input type="text" id="zahl1" /></p>
+    <p>Operation: <input type="text" id="operation" /></p>
+    <p>Zahl2: <input type="text" id="zahl2" /></p>
+    <div>Resultat: <input type="text" id="resultat" /></div>
+    <button id="btn" onclick="myFunction()">ERRECHNE LÖSUNG</button>
+  </body>
+</html>
+
+<script>
+  function myFunction() {
+    var zahl1 = $("#zahl1").val();
+    var zahl2 = $("#zahl2").val();
+    var operation = $("#operation").val();
+    $.get("http://localhost:3000/a10/business_layer/manager.php", {
+      zahl1: zahl1,
+      zahl2: zahl2,
+      operation: operation,
+    }).done(function (data) {
+      $("input:text[id=resultat]").val(data);
+    });
+  }
+</script>

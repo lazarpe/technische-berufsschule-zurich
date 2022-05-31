@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aufgabe 6 & 7</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link
+      href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+      rel="stylesheet"
+    />
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  </head>
+  <body>
+      <h1>A6 & 7</h1>
+      <div id="dialog" >Data loaded: unsuccessful</div>
+      <input type="text" name="input" disabled/>
+      <button id="btn" type="submit" onclick="myFunction()">send</button> 
+    </form>
+  </body>
+</html>
+
+<script>  
+  $(function() {  
+     $( "#dialog" ).dialog({  
+      title: "JSON DATA GETTER",  
+      autoOpen: false,   
+      buttons: {  
+        OK: function() {$(this).dialog("close");}  
+      },  
+     });   
+  });  
+
+  function myFunction() {
+    $.getJSON("http://localhost:3000/a6_7/business_layer/filewriter.php", function(data) {
+                $('input:text[name=input]').val(data["value"]);
+                $('div[id=dialog]').html("Data is loaded successfully");
+            });
+            $( "#dialog" ).dialog( "open" ); 
+  }
+</script>

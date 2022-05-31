@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A8</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <p>Vorname <input type="text" id="vorname" /></p>
+    <p>Nachname <input type="text" id="nachname" /></p>
+    <button id="btn" type="submit" onclick="myFunction()">
+      CALL PHP Function JASON value return Array
+    </button>
+  </body>
+</html>
+
+<script>
+  function myFunction() {
+    $.getJSON(
+      "http://localhost:3000/a8/business_layer/manager.php",
+      function (data) {
+        $("#vorname").val(data["Vorname"]);
+        $("#nachname").val(data["Nachname"]);
+      }
+    );
+  }
+</script>
