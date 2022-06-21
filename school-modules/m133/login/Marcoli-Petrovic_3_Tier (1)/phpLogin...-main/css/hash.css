@@ -1,0 +1,39 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #f5f5f5;
+}
+
+.form-hash {
+    width: 100%;
+    max-width: 500px;
+    padding: 15px;
+    margin: auto;
+}
+
+h1 {
+    margin: auto;
+}
+
+.form-hash .checkbox {
+    font-weight: 400;
+}
+
+#divider {
+    margin-bottom: 5%;
+}
+
+.form-hash .form-floating {
+    margin-bottom: 5%;
+}
+
+.form-hash .form-floating:focus-within {
+    z-index: 2;
+}
